@@ -1,0 +1,63 @@
+extends ../template
+
+block variables 
+    - var title = "Добро пожаловать"
+
+block content
+    include ../common/spinner.pug    
+    section.section.index
+        .Background
+            canvas.Background-canvas
+        button(type="button").button.index__flip-button.button_transparent Авторизоваться
+        .index__wrap  
+            .index__flipper
+                .index__block
+                    include ../common/user.pug
+                    include ../common/socials.pug            
+                    .index__buttons
+                        a.index__button(href="my-works").button Мои работы
+                        a.index__button(href="about").button Обо мне
+                        a.index__button(href="blog").button Блог  
+                .form__block
+                    form(action="/auth" method="POST" enctype="application/x-www-form-urlencoded").form                                         
+                        .block-subtitle Авторизуйтесь  
+                        .form__auth              
+                            .form__row
+                                label(for="login").form__label-img
+                                    svg.form__label-icon
+                                        use(xlink:href="assets/images/icons/sprite.svg#login")
+                                input(name="login" id="login" placeholder="Логин" required).form__input.form__input-text.form__input_round-right
+                            .form__row
+                                label(for="password").form__label-img
+                                    svg.form__label-icon
+                                        use(xlink:href="assets/images/icons/sprite.svg#password")
+                                input(name="password" id="password" placeholder="Пароль" required).form__input.form__input-text.form__input_round-right
+                        .form__inputs
+                            .form__row.form__check
+                                label(for="imahuman").form__label
+                                    input(type="checkbox" id="imahuman" name="human" required).form__input-checkbox
+                                    span.form__input-square
+                                        span.form__input-check
+                                    span.form__label-text Я человек
+                            .form__row Вы точно не робот?
+                            .form__row
+                                label(for="notarobot").form__label
+                                    input(type="radio" id="notarobot" name="robot" required).form__input.form__input-radio 
+                                    span.form__input-circle
+                                        span.form__input-inner
+                                    span.form__label-text Да
+                                label(for="mayberobot").form__label.margin_left_40
+                                    input(type="radio" id="mayberobot" name="robot").form__input.form__input-radio
+                                    span.form__input-circle
+                                        span.form__input-inner
+                                    span.form__label-text Не уверен
+                        .index__buttons
+                            a(href="#").button.index__button-back На главную
+                            button.index__button.button(type="submit") Войти  
+            .index__message
+                .index__message-block
+                    a.index__close
+                        span.index__close-icon
+                    .index__error Не все поля заполнены верно   
+        .index__copyright © Мария Миронова | Создано&nbsp;с&nbsp;любовью&nbsp;в&nbsp;LoftSchool&nbsp;| 2017-2018
+    script(async defer src="./assets/scripts/water/water.js")

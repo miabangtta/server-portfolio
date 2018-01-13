@@ -1,0 +1,21 @@
+{
+  "db": {
+    "host": "ds247007.mlab.com",
+    "port": "47007",
+    "name": "blogmyportfolio111",
+    "user": "banrtta",
+    "password": "159753852bB"
+  },
+  "mail": {
+    "subject": "Сообщение с сайта-портфолио",
+    "smtp": {
+      "host": "smtp.gmail.com",
+      "port": 465,
+      "secure": true,
+      "auth": {
+        "user": "portfolioapp111@gmail.com",
+        "pass": "159753963"
+      }
+    }
+  }
+}

@@ -1,0 +1,45 @@
+extends ../template
+
+block variables
+    - var title = "Мои работы"
+
+block content
+    include ../common/spinner.pug
+    .wrapper
+        include ../common/hero.pug
+        svg.triangle.triangle_fill_white.triangle_up(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 85" preserveaspectratio="none")
+            polygon(points="0,0   0,86   500,86   500,75.5 1000,0   1000,86   500,86   500,75.5")      
+        .section-title.title-works
+            .block-title Мои работы                
+        section.section.slider
+            include ../common/slider.pug            
+        .section-title.title-reviews
+            .block-title Что обо мне говорят
+        section.reviews            
+            .container
+                ul.reviews__list
+                    li.reviews__item
+                        .reviews__icon
+                            img.reviews__icon-pic(src="./assets/images/content/dima.jpg", alt="Дмитрий")
+                        .reviews__content Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                        .reviews__author Ковальчук Дмитрий
+                        .reviews__occ основатель Loftschool
+                    li.reviews__item
+                        .reviews__icon
+                            img.reviews__icon-pic(src="./assets/images/content/vova.jpg", alt="Владимир")
+                        .reviews__content Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                        .reviews__author Сабанцев Владимир
+                        .reviews__occ преподаватель
+            .message
+                form(action="/contact" method="POST" enctype="application/x-www-form-urlencoded")#form-message
+                    .message__form
+                        .block-subtitle Связаться со мной
+                        //- if (msg) 
+                        .message__status= msg
+                        input.message__name(name="name" placeholder="Имя" required)
+                        input.message__email(name="email" placeholder="Email" required)
+                        textarea.message__content(name="text" placeholder="Ваше сообщение" required)
+                        .message__buttons
+                            button(type="submit").button Отправить
+                            button(type="reset").button Очистить                  
+    include ../common/footer.pug

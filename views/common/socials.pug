@@ -1,0 +1,13 @@
+ul.socials__list
+    -
+        var socials = [
+            ['fb', 'https://www.facebook.com/encrem'],
+            ['vk', 'https://www.vk.com/miabangtta'],
+            ['github', 'https://www.github.com/miabangtta'],
+            ['in', 'https://www.linkedin.com/in/mariya-mironova-15886587']
+        ]
+    each item in socials
+        li.socials__item
+            a(href=`${item[1]}` target="_blank").socials__link
+                svg.socials__pic
+                    use(xlink:href=`./assets/images/icons/sprite.svg#${item[0]}`)

@@ -1,0 +1,134 @@
+extends ../template
+
+block variables
+    - var title = "Обо мне"
+
+block content
+    include ../common/spinner.pug
+    .wrapper    
+        include ../common/hero.pug
+        section.section.about
+            svg.triangle.triangle_fill_beige.triangle_up.triangle_tablets(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 85" preserveaspectratio="none")
+                polygon(points="0,0   0,86   500,86   500,75.5 1000,0   1000,86   500,86   500,75.5")
+            .about__left
+                .about__triangle.about__triangle_left
+                    svg.triangle.triangle_fill_beige.triangle_up(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 500 85" preserveaspectratio="none")
+                        polygon(points="0,0   0,86   500.8,86   500.8,75.5")                     
+                .about__left-content.container
+                    .section-title.title-about
+                        .block-title Обо мне
+                    .user-desc
+                        .user-desc__avatar
+                            img.user-desc__pic(src="./assets/images/content/avatar.jpg", alt="avatar")
+                        .user-desc__title
+                            .block-subtitle Кто я
+                        .user-desc__text.text-block
+                            p Я веб разработчик из Москвы. Мне 22 года. Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                            p Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+            .about__right
+                .about__triangle.about__triangle_right
+                    svg.triangle.triangle_fill_white.triangle_up(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 500 85" preserveaspectratio="none")
+                        polygon(points="500,0   500,86   0,86   0,75.5")
+                .about__right-title.block-subtitle Чем я могу быть вам полезна      
+                .about__right-desc.container.text-block    
+                    p Больше всего меня привлекет Frontend разработка, но я также знакома и могу решать не сложные задачи на Backend. Но давайте по порядку.
+                .about__right-content.container
+                    ul.skills-list
+                        -
+                           var skills = [
+                                {
+                                    skill: "Frontend",
+                                    tech1: [
+                                        {
+                                            name: 'HTML5',
+                                            percent: '85'
+                                        }, {
+                                            name: 'CSS3',
+                                            percent: '80'
+                                        }, {
+                                            name: 'JavaScript & jQuery',
+                                            percent: '70'
+                                        } ]
+                                },{                                           
+                                    skill: "Backend",
+                                    tech2: [
+                                        {
+                                            name: 'PHP',
+                                            percent: '40'
+                                        }, {
+                                            name: 'mySQL',
+                                            percent: '55'
+                                        }, {
+                                            name: 'Node.js & npm',
+                                            percent: '45'
+                                        }, {
+                                            name: 'Mongo.db',
+                                            percent: '65'
+                                        } ]
+                                },{                                           
+                                    skill: "Workflow",
+                                    tech3: [
+                                        {
+                                            name: 'Git',
+                                            percent: '85'
+                                        },{
+                                            name: 'Gulp',
+                                            percent: '80'
+                                        },{
+                                            name: 'Webpack',
+                                            percent: '60'
+                                        },{
+                                            name: 'Bower',
+                                            percent: '60'
+                                        }] 
+                                }]    
+                        each item in skills
+                            li.skills-list__item.skills-row
+                                .skills-row__title #{item['skill']}
+                                ul.skills-row__list      
+                                    if item['skill'] == 'Frontend'
+                                        if (frontendSkills)
+                                            each word in frontendSkills 
+                                                li.skills-row__item                                               
+                                                    .circle 
+                                                        .skill__title
+                                                            =word.name  
+                                                        svg.circles(viewBox='0 0 110 110')
+                                                            circle(r="45" cx="50%" cy="50%" fill="none" class="circle__first")
+                                                            circle(r="45" cx="50%" cy="50%" transform="rotate(-90 55 55)" class=`circle__second circle-${word.percents}`)
+                                    else if item['skill'] == 'Backend'
+                                        each word in item['tech2'] 
+                                            li.skills-row__item
+                                                .circle 
+                                                    .skill__title #{word['name']} 
+                                                    svg.circles(viewBox='0 0 110 110')
+                                                        circle(r="45" cx="50%" cy="50%" fill="none" class="circle__first")
+                                                        circle(r="45" cx="50%" cy="50%" transform="rotate(-90 55 55)" class=`circle__second circle-${word['percent']}`)
+                                    else if item['skill'] == 'Workflow'
+                                        each word in item['tech3'] 
+                                            li.skills-row__item
+                                                .circle 
+                                                    .skill__title #{word['name']} 
+                                                    svg.circles(viewBox='0 0 110 110')
+                                                        circle(r="45" cx="50%" cy="50%" fill="none" class="circle__first")
+                                                        circle(r="45" cx="50%" cy="50%" transform="rotate(-90 55 55)" class=`circle__second circle-${word['percent']}`)
+        section.section.map
+            .google-map 
+            .map__data  
+                .contacts
+                    .block-subtitle.contacts__subtitle Контакты
+                    ul.contacts__list   
+                        -
+                            var contacts = [
+                                ['skype', 'mary.mary.-_-'], 
+                                ['envelope2', 'bangtta@yandex.ru'],
+                                ['phone2', '8-888-888-88-61'],
+                                ['map_marker', 'Москва, Мясницкая, 9']
+                            ]                            
+                        each item in contacts 
+                            li.contacts__item.contacts-row
+                                .contacts-row__icon
+                                    img(src=`./assets/images/icons/${item[0]}.svg` alt=`${item[0]}`).contacts-row__pic
+                                .contacts-row__title #{item[1]}    
+        script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnWF6Pr1KnNC-8U10281s4lP23pk3arVo&callback=initMap" async="async")
+        include ../common/footer.pug
