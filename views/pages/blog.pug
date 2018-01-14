@@ -36,8 +36,8 @@ block content
                                     .articles__title(id=`article${index.id}`)
                                         =index.title   
                                     .articles__date
-                                        =index.date   
+                                        =index.date  
+                                        //- #{item[1]}  
                                     p
                                         =index.body                                
     include ../common/footer.pug
-            

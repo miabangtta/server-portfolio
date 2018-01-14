@@ -8,6 +8,8 @@ const ctrlNewBlog = require('../controllers/newBlog');
 
 
 router.get('/blog', ctrlBlog.getArticles);
+router.post('/blog', ctrlNewBlog.createArticle); 
+
 // router.post('/blog', ctrlBlog.createArticle);
 // router.put('/blog/:id', ctrlBlog.editArticle);
 // router.delete('/blog/:id', ctrlBlog.deleteArticle);
@@ -15,10 +17,7 @@ router.get('/blog', ctrlBlog.getArticles);
 router.get('/works', ctrlWorks.getWork);
 router.post('/works', ctrlWorks.setWork);
 
-router.get('/skills', ctrlSkills.getSkills);
-
-router.post('/blog', ctrlNewBlog.createArticle); //шлем запрос на api/blog
-
+router.get('/about', ctrlSkills.getSkills);
 
 
 module.exports = router;

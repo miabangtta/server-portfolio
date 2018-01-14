@@ -6,9 +6,34 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 require('./api/models/db'); 
 
+const mongoose = require('mongoose');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+const passport = require('passport');
+
+
 const index = require('./routes/index');
 const app = express();
 const indexApi = require('./api/routes/index');
+
+// app.use(session({
+//   secret: 'secret',
+//   key: 'keys',
+//   cookie: {
+//     path: '/',
+//     httpOnly: true,
+//     maxAge: null
+//   },
+//   saveUninitialized: false,
+//   resave: false,
+//   store: new MongoStore({mongooseConnection: mongoose.connection})
+// }));
+
+// require('./config/config-passport');
+// app.use(passport.initialize());
+// app.use(passport.session());
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,12 +52,14 @@ app.use('/api', indexApi);
 app.use('/admin', function(req, res) {
   res.sendFile(path.resolve(__dirname, './public', 'admin.html'));
 });
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
